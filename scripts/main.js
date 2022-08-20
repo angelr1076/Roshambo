@@ -1,4 +1,5 @@
 let gameDecision = '';
+let btn = document.querySelector('#btn');
 let computerPoints = 0;
 let playerPoints = 0;
 let gameActive = true;
@@ -33,10 +34,14 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+function playerPrompt() {
+  return prompt('Please select Rock, Paper or Scissors');
+}
+
 // Write a NEW function called game().
 function game() {
-  let playerSelection = prompt('Please select Rock, Paper or Scissors');
   let computerSelection = getComputerChoice();
+  let playerSelection = playerPrompt();
   let play = playRound(playerSelection, computerSelection);
 
   if (play.includes('You lose!')) {
@@ -62,8 +67,14 @@ function callGame() {
 
 function gameOver() {
   gameActive = false;
-  // alert()
   return;
 }
 
-game();
+function resetGame() {
+  return window.location.reload(true);
+}
+
+btn.addEventListener('click', () => {
+  resetGame();
+  game();
+});
