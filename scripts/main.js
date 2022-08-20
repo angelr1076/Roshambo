@@ -1,6 +1,7 @@
 let gameDecision = '';
 let computerPoints = 0;
 let playerPoints = 0;
+let gameActive = true;
 
 // Begin with a function called getComputerChoice
 function getComputerChoice() {
@@ -25,6 +26,8 @@ function playRound(playerSelection, computerSelection) {
     (computerSelection == 'Scissors' && playerSelection == 'Paper')
   ) {
     return (gameDecision = `You lose! ${computerSelection} beats ${playerSelection}.`);
+  } else if (playerSelection == null || playerSelection == '') {
+    return alert('Please enter a choice.');
   } else {
     return (gameDecision = `You win! ${playerSelection} beats ${computerSelection}.`);
   }
@@ -34,23 +37,33 @@ function playRound(playerSelection, computerSelection) {
 function game() {
   let playerSelection = prompt('Please select Rock, Paper or Scissors');
   let computerSelection = getComputerChoice();
-  let decision = playRound(playerSelection, computerSelection);
+  let play = playRound(playerSelection, computerSelection);
 
-  if (decision.includes('You lose!')) {
+  if (play.includes('You lose!')) {
     computerPoints++;
-    console.log('Game, computer wins. Score: ', computerPoints);
-  } else if (decision.includes('You win!')) {
+    console.log('Computer wins. Score: ', computerPoints);
+    callGame();
+  } else if (play.includes('You win!')) {
     playerPoints++;
-    console.log('Game, player wins. Score: ', playerPoints);
+    console.log('Player wins. Score: ', playerPoints);
+    callGame();
   } else {
     console.log(gameDecision);
+    callGame();
   }
+}
 
-  if (computerPoints == 5 && playerPoints < 5) {
-    return computerPoints;
-  } else if (playerPoints == 5 && computerPoints < 5) {
-    return playerPoints;
-  }
+function callGame() {
+  (computerPoints == 5 && playerPoints < 5) ||
+  (playerPoints == 5 && computerPoints < 5)
+    ? gameOver()
+    : game();
+}
+
+function gameOver() {
+  gameActive = false;
+  // alert()
+  return;
 }
 
 game();
