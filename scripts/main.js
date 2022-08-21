@@ -3,11 +3,11 @@ let btn = document.querySelector('#btn');
 let computerPoints = 0;
 let playerPoints = 0;
 let gameActive = true;
+// Create computer choices
+let computerChoices = ['rock', 'paper', 'scissors'];
 
 // Begin with a function called getComputerChoice
 function getComputerChoice() {
-  // Create computer choices
-  let computerChoices = ['rock', 'paper', 'scissors'];
   // Randomly generate a choice
   let randomChoice = Math.floor(Math.random() * computerChoices.length);
   // Return the choice, uppercase
@@ -28,15 +28,16 @@ function playRound(playerSelection, computerSelection) {
   ) {
     return (gameDecision = `You lose! ${computerSelection} beats ${playerSelection}.`);
   } else if (
-    playerSelection == null ||
-    playerSelection == '' ||
-    playerSelection != 'rock' ||
-    playerSelection != 'paper' ||
-    playerSelection != 'scissors'
+    // The function should - and then return a string that declares the winner of the round
+    // Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
+    (playerSelection == 'rock' && computerSelection == 'scissors') ||
+    (playerSelection == 'paper' && computerSelection == 'rock') ||
+    (playerSelection == 'scissors' && computerSelection == 'paper')
   ) {
-    return alert('Please enter a valid choice.');
+    return (gameDecision = `You win! ${playerSelection} beats ${computerSelection} ${playerSelection}.`);
   } else {
-    return (gameDecision = `You win! ${playerSelection} beats ${computerSelection}.`);
+    alert('Please enter a valid choice.');
+    game();
   }
 }
 
