@@ -7,7 +7,7 @@ let gameActive = true;
 // Begin with a function called getComputerChoice
 function getComputerChoice() {
   // Create computer choices
-  let computerChoices = ['Rock', 'Paper', 'Scissors'];
+  let computerChoices = ['rock', 'paper', 'scissors'];
   // Randomly generate a choice
   let randomChoice = Math.floor(Math.random() * computerChoices.length);
   // Return the choice, uppercase
@@ -22,9 +22,9 @@ function playRound(playerSelection, computerSelection) {
   } else if (
     // The function should - and then return a string that declares the winner of the round
     // Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
-    (computerSelection == 'Rock' && playerSelection == 'Scissors') ||
-    (computerSelection == 'Paper' && playerSelection == 'Rock') ||
-    (computerSelection == 'Scissors' && playerSelection == 'Paper')
+    (computerSelection == 'rock' && playerSelection == 'scissors') ||
+    (computerSelection == 'paper' && playerSelection == 'rock') ||
+    (computerSelection == 'scissors' && playerSelection == 'paper')
   ) {
     return (gameDecision = `You lose! ${computerSelection} beats ${playerSelection}.`);
   } else if (playerSelection == null || playerSelection == '') {
@@ -35,7 +35,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function playerPrompt() {
-  return prompt('Please select Rock, Paper or Scissors');
+  return prompt('Please select Rock, Paper or Scissors').toLowerCase();
 }
 
 // Write a NEW function called game().
@@ -59,10 +59,15 @@ function game() {
 }
 
 function callGame() {
-  (computerPoints == 5 && playerPoints < 5) ||
-  (playerPoints == 5 && computerPoints < 5)
-    ? gameOver()
-    : game();
+  if (computerPoints == 5 && playerPoints < 5) {
+    alert(`The computer won the game with ${computerPoints}`);
+    gameOver();
+  } else if (playerPoints == 5 && computerPoints < 5) {
+    alert(`The player won the game with ${playerPoints}`);
+    gameOver();
+  } else {
+    game();
+  }
 }
 
 function gameOver() {
