@@ -41,16 +41,6 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-// Prompt player for choice
-function playerPrompt() {
-  return prompt('Please select Rock, Paper or Scissors').toLowerCase();
-}
-
-function gameOver() {
-  gameActive = false;
-  return;
-}
-
 // Write a NEW function called game().
 function game() {
   let computerSelection = getComputerChoice();
@@ -81,6 +71,16 @@ function callGame() {
   } else {
     game();
   }
+}
+
+// Prompt player for choice
+function playerPrompt() {
+  return prompt('Please select Rock, Paper or Scissors').toLowerCase();
+}
+
+function gameOver() {
+  gameActive = false;
+  return;
 }
 
 function resetGame() {
