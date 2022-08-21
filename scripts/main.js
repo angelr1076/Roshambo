@@ -3,11 +3,11 @@ let btn = document.querySelector('#btn');
 let computerPoints = 0;
 let playerPoints = 0;
 let gameActive = true;
-// Create computer choices
-let computerChoices = ['rock', 'paper', 'scissors'];
 
 // Begin with a function called getComputerChoice
 function getComputerChoice() {
+  // Create computer choices
+  let computerChoices = ['rock', 'paper', 'scissors'];
   // Randomly generate a choice
   let randomChoice = Math.floor(Math.random() * computerChoices.length);
   // Return the choice, uppercase
@@ -42,9 +42,9 @@ function playRound(playerSelection, computerSelection) {
 }
 
 // Write a NEW function called game().
-function game() {
+function initGame() {
   let computerSelection = getComputerChoice();
-  let playerSelection = playerPrompt();
+  let playerSelection = getPlayerPrompt();
   let play = playRound(playerSelection, computerSelection);
 
   if (play.includes('You lose!')) {
@@ -69,17 +69,19 @@ function callGame() {
     alert(`The player won the game with ${playerPoints} points`);
     gameOver();
   } else {
-    game();
+    initGame();
   }
 }
 
 // Prompt player for choice
-function playerPrompt() {
+function getPlayerPrompt() {
   return prompt('Please select Rock, Paper or Scissors').toLowerCase();
 }
 
 function gameOver() {
   gameActive = false;
+  computerPoints = 0;
+  playerPoints = 0;
   return;
 }
 
@@ -89,5 +91,5 @@ function resetGame() {
 
 btn.addEventListener('click', () => {
   resetGame();
-  game();
+  initGame();
 });
