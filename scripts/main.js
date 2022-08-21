@@ -60,10 +60,10 @@ function game() {
 
 function callGame() {
   if (computerPoints == 5 && playerPoints < 5) {
-    alert(`The computer won the game with ${computerPoints}`);
+    alert(`The computer won the game with ${computerPoints} points`);
     gameOver();
   } else if (playerPoints == 5 && computerPoints < 5) {
-    alert(`The player won the game with ${playerPoints}`);
+    alert(`The player won the game with ${playerPoints} points`);
     gameOver();
   } else {
     game();
