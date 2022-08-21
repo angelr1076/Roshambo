@@ -27,15 +27,27 @@ function playRound(playerSelection, computerSelection) {
     (computerSelection == 'scissors' && playerSelection == 'paper')
   ) {
     return (gameDecision = `You lose! ${computerSelection} beats ${playerSelection}.`);
-  } else if (playerSelection == null || playerSelection == '') {
+  } else if (
+    playerSelection == null ||
+    playerSelection == '' ||
+    playerSelection != 'rock' ||
+    playerSelection != 'paper' ||
+    playerSelection != 'scissors'
+  ) {
     return alert('Please enter a choice.');
   } else {
     return (gameDecision = `You win! ${playerSelection} beats ${computerSelection}.`);
   }
 }
 
+// Prompt player for choice
 function playerPrompt() {
   return prompt('Please select Rock, Paper or Scissors').toLowerCase();
+}
+
+function gameOver() {
+  gameActive = false;
+  return;
 }
 
 // Write a NEW function called game().
@@ -68,11 +80,6 @@ function callGame() {
   } else {
     game();
   }
-}
-
-function gameOver() {
-  gameActive = false;
-  return;
 }
 
 function resetGame() {
