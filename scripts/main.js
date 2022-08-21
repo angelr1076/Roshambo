@@ -34,7 +34,7 @@ function playRound(playerSelection, computerSelection) {
     playerSelection != 'paper' ||
     playerSelection != 'scissors'
   ) {
-    return alert('Please enter a choice.');
+    return alert('Please enter a valid choice.');
   } else {
     return (gameDecision = `You win! ${playerSelection} beats ${computerSelection}.`);
   }
