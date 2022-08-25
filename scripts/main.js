@@ -48,10 +48,9 @@ function playRound(playerSelection, computerSelection) {
 // Write a NEW function called game().
 function initGame() {
   let computerSelection = getComputerChoice();
+  let play = playRound(playerChoice, computerSelection);
 
   console.log('comp:', computerSelection, 'player:', playerChoice);
-
-  let play = playRound(playerChoice, computerSelection);
 
   if (play.includes('You lose!')) {
     computerPoints++;
@@ -67,6 +66,13 @@ function initGame() {
   }
 }
 
+function renderDisplay() {
+  const display = document.querySelector('.game-display');
+  const playerScore = document.createElement('p');
+  const computerScore = document.createElement('p');
+  const roundDecision = document.createElement('p');
+}
+
 // function callGame() {
 //   if (computerPoints == 5 && playerPoints < 5) {
 //     alert(`The computer won the game with ${computerPoints} points`);
@@ -80,9 +86,9 @@ function initGame() {
 // }
 
 // Prompt player for choice
-function getPlayerPrompt() {
-  return prompt('Please select Rock, Paper or Scissors').toLowerCase();
-}
+// function getPlayerPrompt() {
+//   return prompt('Please select Rock, Paper or Scissors').toLowerCase();
+// }
 
 function gameOver() {
   computerPoints = 0;
