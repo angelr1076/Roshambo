@@ -1,8 +1,12 @@
 let gameDecision = '';
-let btn = document.querySelector('#btn');
+let gameButton = document.querySelector('#start-game');
+let rockButton = document.querySelector('#rock');
+let paperButton = document.querySelector('#paper');
+let scissorButton = document.querySelector('#scissors');
 let computerPoints = 0;
 let playerPoints = 0;
 let gameActive = true;
+let playerChoice;
 
 // Begin with a function called getComputerChoice
 function getComputerChoice() {
@@ -37,43 +41,43 @@ function playRound(playerSelection, computerSelection) {
     return (gameDecision = `You win! ${playerSelection} beats ${computerSelection} ${playerSelection}.`);
   } else {
     alert('Please enter a valid choice.');
-    game();
+    initGame();
   }
 }
 
 // Write a NEW function called game().
 function initGame() {
   let computerSelection = getComputerChoice();
-  let playerSelection = getPlayerPrompt();
-  let play = playRound(playerSelection, computerSelection);
+
+  console.log('comp:', computerSelection, 'player:', playerChoice);
+
+  let play = playRound(playerChoice, computerSelection);
 
   if (play.includes('You lose!')) {
     computerPoints++;
     console.log('Computer wins. Score: ', computerPoints);
-    callGame();
+    // callGame();
   } else if (play.includes('You win!')) {
     playerPoints++;
     console.log('Player wins. Score: ', playerPoints);
-    callGame();
+    // callGame();
   } else {
     console.log(gameDecision);
-    callGame();
+    // callGame();
   }
 }
 
-function callGame() {
-  initGame();
-  // Temporarily pause five round logic for rps-ui branch
-  // if (computerPoints == 5 && playerPoints < 5) {
-  //   alert(`The computer won the game with ${computerPoints} points`);
-  //   gameOver();
-  // } else if (playerPoints == 5 && computerPoints < 5) {
-  //   alert(`The player won the game with ${playerPoints} points`);
-  //   gameOver();
-  // } else {
-  //   initGame();
-  // }
-}
+// function callGame() {
+//   if (computerPoints == 5 && playerPoints < 5) {
+//     alert(`The computer won the game with ${computerPoints} points`);
+//     gameOver();
+//   } else if (playerPoints == 5 && computerPoints < 5) {
+//     alert(`The player won the game with ${playerPoints} points`);
+//     gameOver();
+//   } else {
+//     initGame();
+//   }
+// }
 
 // Prompt player for choice
 function getPlayerPrompt() {
@@ -91,7 +95,22 @@ function resetGame() {
   return window.location.reload(true);
 }
 
-btn.addEventListener('click', () => {
+gameButton.addEventListener('click', () => {
   resetGame();
+  initGame();
+});
+
+rockButton.addEventListener('click', e => {
+  playerChoice = e.target.value.toLowerCase();
+  initGame();
+});
+
+paperButton.addEventListener('click', e => {
+  playerChoice = e.target.value.toLowerCase();
+  initGame();
+});
+
+scissorButton.addEventListener('click', e => {
+  playerChoice = e.target.value.toLowerCase();
   initGame();
 });
