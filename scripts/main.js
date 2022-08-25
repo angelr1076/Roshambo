@@ -62,15 +62,17 @@ function initGame() {
 }
 
 function callGame() {
-  if (computerPoints == 5 && playerPoints < 5) {
-    alert(`The computer won the game with ${computerPoints} points`);
-    gameOver();
-  } else if (playerPoints == 5 && computerPoints < 5) {
-    alert(`The player won the game with ${playerPoints} points`);
-    gameOver();
-  } else {
-    initGame();
-  }
+  initGame();
+  // Temporarily pause five round logic for rps-ui branch
+  // if (computerPoints == 5 && playerPoints < 5) {
+  //   alert(`The computer won the game with ${computerPoints} points`);
+  //   gameOver();
+  // } else if (playerPoints == 5 && computerPoints < 5) {
+  //   alert(`The player won the game with ${playerPoints} points`);
+  //   gameOver();
+  // } else {
+  //   initGame();
+  // }
 }
 
 // Prompt player for choice
@@ -79,9 +81,9 @@ function getPlayerPrompt() {
 }
 
 function gameOver() {
-  gameActive = false;
   computerPoints = 0;
   playerPoints = 0;
+  gameActive = false;
   return;
 }
 
