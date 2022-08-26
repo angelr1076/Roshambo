@@ -10,7 +10,7 @@ let roundDisplay = document.querySelector('#round-display');
 let gameDecision = document.querySelector('#game-decision');
 let computerPoints = 0;
 let playerPoints = 0;
-let roundCount = 0;
+let roundCount = 1;
 let gameActive = true;
 let playerChoice;
 
@@ -58,36 +58,35 @@ function initGame() {
   let computerSelection = getComputerChoice();
   let play = playRound(playerChoice, computerSelection);
   let winner;
-  roundCount++;
-  playerScore.innerHTML = `${playerPoints} <br> Chose: ${playerChoice.toUpperCase()}`;
-  computerScore.innerHTML = `${computerPoints} <br> Chose: ${computerSelection.toUpperCase()}`;
 
   if (play.includes('You win!')) {
     playerPoints++;
     roundDisplay.textContent = roundCount;
-    roundDecision.textContent = 'Player wins this round';
-    winner = 'Player';
+    roundDecision.textContent = `The player wins round ${roundCount}`;
+    winner = 'player';
     playerPoints === 5 ? callGame(playerPoints, winner) : (gameActive = true);
   } else if (play.includes('You lose!')) {
     computerPoints++;
     roundDisplay.textContent = roundCount;
-    roundDecision.textContent = 'Computer wins this round';
-    winner = 'Computer';
+    roundDecision.textContent = `The computer wins round ${roundCount}`;
+    winner = 'computer';
     computerPoints === 5
       ? callGame(computerPoints, winner)
       : (gameActive = true);
   } else {
     roundDisplay.textContent = roundCount;
-    // playerScore.innerHTML = `${playerPoints} <br> Chose: ${playerChoice.toUpperCase()}`;
-    // computerScore.innerHTML = `${computerPoints} <br> Chose: ${computerSelection.toUpperCase()}`;
     roundDecision.textContent = `It's a tie! The player and the computer both chose ${computerSelection.toUpperCase()}.`;
   }
+
+  roundCount++;
+  playerScore.innerHTML = `${playerPoints} <br> Chose: ${playerChoice.toUpperCase()}`;
+  computerScore.innerHTML = `${computerPoints} <br> Chose: ${computerSelection.toUpperCase()}`;
 }
 
 // ----------------------- Game decision -----------------------
 
 function callGame(points, whoWon) {
-  gameDecision.textContent = `${whoWon} wins the game with ${points} points`;
+  gameDecision.textContent = `The ${whoWon} wins the game with ${points} points`;
   roundDecision.classList.remove('round-decision');
   roundDecision.classList.add('end-game');
   roundDecision.textContent = 'Game Over';
