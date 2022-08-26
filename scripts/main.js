@@ -3,6 +3,10 @@ let gameButton = document.querySelector('#start-game');
 let rockButton = document.querySelector('#rock');
 let paperButton = document.querySelector('#paper');
 let scissorButton = document.querySelector('#scissors');
+let display = document.querySelector('#game-display');
+let playerScore = document.querySelector('.player-score');
+let computerScore = document.querySelector('.computer-score');
+let roundDecision = document.querySelector('.game-decision');
 let computerPoints = 0;
 let playerPoints = 0;
 let gameActive = true;
@@ -22,7 +26,9 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
   // Define win/lose parameters
   if (playerSelection == computerSelection) {
-    return (gameDecision = 'Tie game.');
+    roundDecision.textContent = 'Tie game.';
+    renderDisplay();
+    return [playerSelection, computerSelection];
   } else if (
     // The function should - and then return a string that declares the winner of the round
     // Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
@@ -30,7 +36,9 @@ function playRound(playerSelection, computerSelection) {
     (computerSelection == 'paper' && playerSelection == 'rock') ||
     (computerSelection == 'scissors' && playerSelection == 'paper')
   ) {
-    return (gameDecision = `You lose! ${computerSelection} beats ${playerSelection}.`);
+    roundDecision.textContent = `You lose! ${computerSelection} beats ${playerSelection}.`;
+    renderDisplay();
+    return [playerSelection, computerSelection];
   } else if (
     // The function should - and then return a string that declares the winner of the round
     // Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
@@ -38,10 +46,9 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection == 'paper' && computerSelection == 'rock') ||
     (playerSelection == 'scissors' && computerSelection == 'paper')
   ) {
-    return (gameDecision = `You win! ${playerSelection} beats ${computerSelection} ${playerSelection}.`);
-  } else {
-    alert('Please enter a valid choice.');
-    initGame();
+    roundDecision.textContent = `You win! ${playerSelection} beats ${computerSelection} ${playerSelection}.`;
+    renderDisplay();
+    return [playerSelection, computerSelection];
   }
 }
 
@@ -67,10 +74,9 @@ function initGame() {
 }
 
 function renderDisplay() {
-  const display = document.querySelector('.game-display');
-  const playerScore = document.createElement('p');
-  const computerScore = document.createElement('p');
-  const roundDecision = document.createElement('p');
+  display.appendChild(playerScore);
+  display.appendChild(computerScore);
+  display.appendChild(roundDecision);
 }
 
 // function callGame() {
