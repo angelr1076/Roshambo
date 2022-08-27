@@ -21,6 +21,8 @@ body {
   align-items: center;
   margin: 2.5em;
   padding: 2em;
+  border: 5px solid #000;
+  border-radius: 10px;
 }
 
 .choices {
