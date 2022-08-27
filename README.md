@@ -1,6 +1,6 @@
 # Roshambo
 
-## This is the first draft without a GUI
+## GUI added
 
 ## Assignment
 
