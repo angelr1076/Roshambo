@@ -1,17 +1,19 @@
-let gameButton = document.querySelector('#start-game');
-let title = document.querySelector('.title__game');
-let rockButton = document.querySelector('#rock');
-let paperButton = document.querySelector('#paper');
-let scissorButton = document.querySelector('#scissors');
-let gameDisplay = document.querySelector('#game-display');
-let playerScore = document.querySelector('#player-score');
-let computerScore = document.querySelector('#computer-score');
-let roundDecision = document.querySelector('#round-decision');
-let roundDisplay = document.querySelector('#round-display');
-let gameDecision = document.querySelector('#game-decision');
+const gameButton = document.querySelector('#start-game');
+const title = document.querySelector('.title__game');
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorButton = document.querySelector('#scissors');
+const gameDisplay = document.querySelector('#game-display');
+const playerScore = document.querySelector('#player-score');
+const computerScore = document.querySelector('#computer-score');
+const roundDecision = document.querySelector('#round-decision');
+const roundDisplay = document.querySelector('#round-display');
+const gameDecision = document.querySelector('#game-decision');
+const pointsToWin = 3;
 let computerPoints = 0;
 let playerPoints = 0;
 let roundCount = 1;
+
 let gameActive = true;
 let playerChoice;
 
@@ -53,35 +55,57 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+function clearResults() {
+  playerScore.innerHTML = '';
+  computerScore.innerHTML = '';
+}
+
 // Write a NEW function called game().
-// Called by event listeners
 function initGame() {
+  clearResults();
+
   let computerSelection = getComputerChoice();
-  let play = playRound(playerChoice, computerSelection);
-  let winner;
+  setChoicesInactive();
 
-  if (play.includes('You win!')) {
-    playerPoints++;
-    roundDisplay.textContent = roundCount;
-    roundDecision.textContent = `The player wins round ${roundCount}`;
-    winner = 'player';
-    playerPoints === 5 ? callGame(playerPoints, winner) : (gameActive = true);
-  } else if (play.includes('You lose!')) {
-    computerPoints++;
-    roundDisplay.textContent = roundCount;
-    roundDecision.textContent = `The computer wins round ${roundCount}`;
-    winner = 'computer';
-    computerPoints === 5
-      ? callGame(computerPoints, winner)
-      : (gameActive = true);
-  } else {
-    roundDisplay.textContent = roundCount;
-    roundDecision.textContent = `It's a tie! The player and the computer both chose ${computerSelection.toUpperCase()}.`;
-  }
+  setTimeout(() => {
+    let play = playRound(playerChoice, computerSelection);
+    let winner;
 
-  roundCount++;
-  playerScore.innerHTML = `${playerPoints} <br> Chose: ${playerChoice.toUpperCase()}`;
-  computerScore.innerHTML = `${computerPoints} <br> Chose: ${computerSelection.toUpperCase()}`;
+    if (play.includes('You win!')) {
+      playerPoints++;
+      roundDisplay.textContent = roundCount;
+      roundDecision.textContent = `You won round ${roundCount}`;
+      winner = 'player';
+      playerPoints === pointsToWin
+        ? callGame(playerPoints, winner)
+        : (gameActive = true);
+    } else if (play.includes('You lose!')) {
+      computerPoints++;
+      roundDisplay.textContent = roundCount;
+      roundDecision.textContent = `The computer wins round ${roundCount}`;
+      winner = 'computer';
+      computerPoints === pointsToWin
+        ? callGame(computerPoints, winner)
+        : (gameActive = true);
+    } else {
+      roundDisplay.textContent = roundCount;
+      roundDecision.textContent = `It's a tie! You and the computer both chose ${computerSelection.toUpperCase()}.`;
+    }
+
+    roundCount++;
+    playerScore.innerHTML = `${playerPoints} <br> Chose: ${playerChoice.toUpperCase()}`;
+    computerScore.innerHTML = `${computerPoints} <br> Chose: ${computerSelection.toUpperCase()}`;
+    setChoicesActive();
+  }, 1000);
+}
+
+function setChoicesActive() {
+  rockButton.classList.remove('inactive');
+  paperButton.classList.remove('inactive');
+  scissorButton.classList.remove('inactive');
+  rockButton.disabled = false;
+  paperButton.disabled = false;
+  scissorButton.disabled = false;
 }
 
 // ----------------------- Game decision -----------------------
@@ -92,6 +116,7 @@ function callGame(points, whoWon) {
   roundDecision.classList.add('end-game');
   title.textContent = 'Game Over';
   gameOver();
+  setChoicesInactive();
 }
 
 // ----------------------- End/reset -----------------------
@@ -123,21 +148,28 @@ function setChoicesInactive() {
 gameButton.addEventListener('click', () => {
   resetGame();
   initGame();
+  gameActive = true;
 });
 
 // ----------------------- Player choices -----------------------
 
 rockButton.addEventListener('click', e => {
-  playerChoice = e.target.value;
-  initGame();
+  if (gameActive) {
+    playerChoice = e.target.value;
+    initGame();
+  }
 });
 
 paperButton.addEventListener('click', e => {
-  playerChoice = e.target.value;
-  initGame();
+  if (gameActive) {
+    playerChoice = e.target.value;
+    initGame();
+  }
 });
 
 scissorButton.addEventListener('click', e => {
-  playerChoice = e.target.value;
-  initGame();
+  if (gameActive) {
+    playerChoice = e.target.value;
+    initGame();
+  }
 });
