@@ -6,7 +6,6 @@
 }
 
 html {
-  /* height: 100%; */
   font-family: 'Poppins', sans-serif;
   font-size: 10px;
 }
@@ -44,6 +43,7 @@ input {
 }
 
 .game-display {
+  height: 100px;
   text-align: center;
   margin-top: 0;
   font-size: 1rem;
@@ -51,19 +51,20 @@ input {
 
 .score-container {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   gap: 2em;
 }
 
 .player-container,
 .computer-container {
   display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    width: 12em;
-    border: 4px solid black;
-    border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  width: 12em;
+  height: 6em;
+  border: 4px solid black;
+  border-radius: 10px;
 }
 
 .container__restart {
@@ -74,14 +75,14 @@ input {
   color: #fff;
   background-color: #000;
   border: 2px solid #000;
-  padding: .5em;
+  padding: 0.5em;
   border-radius: 0.5em;
 }
 
 .inactive {
   pointer-events: none;
   opacity: 0.5;
-  background: #CCC;
+  background: #ccc;
 }
 
 button {
@@ -89,15 +90,15 @@ button {
   color: white;
   background-color: #ec3925;
   font-size: 1rem;
-  padding: .75em;
+  padding: 0.75em;
   border-radius: 0.5em;
   border: none;
   -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
-input[type="image"]{
-  width: 125px;
+input[type='image'] {
+  width: 100px;
   height: auto;
 }
 
@@ -126,7 +127,7 @@ input[type="image"]{
 
 .reset-button:active {
   padding: 0;
-  margin: .75em;
+  margin: 0.75em;
   opacity: 0.8;
   font-size: 1.75rem;
   transition: 800ms;
@@ -134,7 +135,6 @@ input[type="image"]{
 }
 
 @media (min-width: 700px) {
-
   .choices {
     flex-direction: row;
     justify-content: space-between;
@@ -143,9 +143,10 @@ input[type="image"]{
 
   .score-container {
     flex-direction: row;
+    gap: 5em;
   }
 
-  input[type="image"] {
+  input[type='image'] {
     width: 200px;
     height: auto;
   }
@@ -159,18 +160,14 @@ input[type="image"]{
     font-size: 2rem;
   }
 
-  .score-container {
-    gap: 5em;
-  }
-
   .game-display {
     margin-top: 2em;
     font-size: 2rem;
+    height: 200px;
   }
 
   button {
-  font-size: 1.5rem;
-  padding: 1em;
-}
-
+    font-size: 1.5rem;
+    padding: 1em;
+  }
 }

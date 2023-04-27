@@ -1,4 +1,5 @@
 let gameButton = document.querySelector('#start-game');
+let title = document.querySelector('.title__game');
 let rockButton = document.querySelector('#rock');
 let paperButton = document.querySelector('#paper');
 let scissorButton = document.querySelector('#scissors');
@@ -89,7 +90,7 @@ function callGame(points, whoWon) {
   gameDecision.textContent = `The ${whoWon} wins the game with ${points} points`;
   roundDecision.classList.remove('round-decision');
   roundDecision.classList.add('end-game');
-  roundDecision.textContent = 'Game Over';
+  title.textContent = 'Game Over';
   gameOver();
 }
 
