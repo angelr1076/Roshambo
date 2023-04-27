@@ -1,7 +1,7 @@
 # Roshambo
 
 ![Rock Paper Scissors img](https://res.cloudinary.com/angelrodriguez/image/upload/v1666208100/Roshambo/Screen_Shot_2022-10-19_at_3.34.41_PM.png "Roshambo Project")
-
+[Play Game](https://angelr1076.github.io/Roshambo/)
 ## GUI added
 
 ## Assignment
